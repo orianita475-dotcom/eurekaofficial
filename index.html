@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construcciones y Reformas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --principal: #f39c12; /* Naranja/Amarillo construcción */
+            --fondo: #121212;    /* Negro profundo */
+            --tarjeta: #1e1e1e;  /* Gris muy oscuro */
+            --texto: #e0e0e0;
+            --blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        /* Sección Principal */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 4px solid var(--principal);
+        }
+
+        .hero h1 { font-size: 2.8rem; color: var(--blanco); margin: 0; text-transform: uppercase; }
+        .hero p { font-size: 1.3rem; color: var(--principal); font-weight: bold; }
+
+        /* Contenedor de Servicios */
+        .seccion {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 { 
+            text-align: center; 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            color: var(--blanco);
+            border-bottom: 2px solid var(--principal);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--tarjeta);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--principal); transform: translateY(-5px); }
+        .card h3 { color: var(--principal); margin-top: 0; }
+
+        /* Galería de Fotos (Espacio para tus fotos) */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .foto {
+            background: #252525;
+            aspect-ratio: 1/1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #444;
+            color: #666;
+            overflow: hidden;
+        }
+
+        .foto img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Botón WhatsApp */
+        .btn-ws {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .btn-ws:hover { background-color: #128c7e; transform: scale(1.1); }
+
+        footer { background: #000; text-align: center; padding: 40px; margin-top: 50px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>CONSTRUCCIÓN PROFESIONAL</h1>
+        <p>Albañilería • Electricidad • Plomería • Acabados</p>
+    </section>
+
+    <div class="seccion" style="text-align: center;">
+        <h2>Nuestros Servicios</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🧱 Albañilería General</h3>
+                <p>Muros, revoques, carpetas y estructuras de hormigón.</p>
+            </div>
+            <div class="card">
+                <h3>📐 Cerámicas y Azulejos</h3>
+                <p>Colocación de precisión en baños, cocinas y pisos.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ Electricidad</h3>
+                <p>Instalaciones completas y reparaciones de urgencia.</p>
+            </div>
+            <div class="card">
+                <h3>💧 Plomería</h3>
+                <p>Arreglos de fugas, instalaciones de agua y cloacas.</p>
+            </div>
+            <div class="card">
+                <h3>🛁 Baños</h3>
+                <p>Remodelaciones integrales de sanitarios y grifería.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Pintura</h3>
+                <p>Protección y estética para tus paredes y techos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccion">
+        <h2 style="display: block;">Muestra de nuestro trabajo</h2>
+        <div class="galeria">
+            <div class="foto"><img src="ban.png" alt="Trabajo de baño"></div>
+            <div class="foto"><img src="ban2.png" alt="Trabajo de baño2"></div>
+            <div class="foto"><img src="ban3.png"></div>
+            <div class="foto"><img src="eureka.png"></div>
+             <div class="foto"><img src="fran.jpg"></div>
+              <div class="foto"><img src="logo.png"></div>
+             
+        </div>
+    </div>
+
+    <a href="https://wa.me/5491141441507" class="btn-ws">
+        💬 ¡Consultar por WhatsApp!
+    </a>
+
+    <footer>
+        <p>Ubicación: Buenos Aires • Contacto: 11 4144-1507</p>
+        <p>© 2026 Calidad en Construcción</p>
+    </footer>
+
+</body>
+</html>
