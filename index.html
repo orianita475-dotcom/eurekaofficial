@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Construcciones y Reformas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Construcciones y Reformas Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --principal: #f39c12; /* Naranja/Amarillo construcción */
-            --fondo: #121212;    /* Negro profundo */
-            --tarjeta: #1e1e1e;  /* Gris muy oscuro */
-            --texto: #e0e0e0;
-            --blanco: #ffffff;
+            --principal: #fbc531; /* Amarillo construcción brillante */
+            --principal-dark: #e1b12c;
+            --fondo: #0a0a0a;    
+            --tarjeta: rgba(30, 30, 30, 0.6);  
+            --texto: #f5f5f5;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -21,164 +23,296 @@
             background-color: var(--fondo);
             color: var(--texto);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Sección Principal */
+        /* --- FONDO ANIMADO --- */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- ELEMENTOS FLOTANTES --- */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .icon {
+            position: absolute;
+            opacity: 0.1;
+            color: var(--principal);
+            font-size: 2rem;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            height: 70vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 20px;
-            border-bottom: 4px solid var(--principal);
+            background: radial-gradient(circle, rgba(251,197,49,0.15) 0%, rgba(0,0,0,0) 70%);
         }
 
-        .hero h1 { font-size: 2.8rem; color: var(--blanco); margin: 0; text-transform: uppercase; }
-        .hero p { font-size: 1.3rem; color: var(--principal); font-weight: bold; }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 8vw, 5rem); 
+            font-weight: 900;
+            color: var(--principal); 
+            margin: 0; 
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        /* Contenedor de Servicios */
+        .hero p { 
+            font-size: 1.2rem; 
+            margin-top: 20px;
+            background: var(--principal);
+            color: black;
+            padding: 5px 15px;
+            font-weight: bold;
+            transform: skew(-10deg);
+        }
+
+        /* --- SECCIONES --- */
         .seccion {
-            padding: 60px 20px;
-            max-width: 1100px;
+            padding: 100px 20px;
+            max-width: 1200px;
             margin: auto;
         }
 
-        h2 { 
+        h2 {  
             text-align: center; 
-            font-size: 2rem; 
-            margin-bottom: 40px; 
-            color: var(--blanco);
-            border-bottom: 2px solid var(--principal);
-            display: inline-block;
-            padding-bottom: 10px;
+            font-size: 2.5rem; 
+            margin-bottom: 50px; 
+            color: var(--principal);
+            text-transform: uppercase;
         }
 
+        /* --- GRID DE SERVICIOS --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--tarjeta);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            transition: 0.3s;
-        }
-
-        .card:hover { border-color: var(--principal); transform: translateY(-5px); }
-        .card h3 { color: var(--principal); margin-top: 0; }
-
-        /* Galería de Fotos (Espacio para tus fotos) */
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .foto {
-            background: #252525;
-            aspect-ratio: 1/1;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #444;
-            color: #666;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(251, 197, 49, 0.1);
+            backdrop-filter: blur(10px); /* Efecto cristal */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
             overflow: hidden;
         }
 
-        .foto img { width: 100%; height: 100%; object-fit: cover; }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--principal);
+            transition: 0.3s;
+        }
 
-        /* Botón WhatsApp */
+        .card:hover { 
+            transform: translateY(-15px); 
+            border-color: var(--principal);
+            background: rgba(251, 197, 49, 0.05);
+        }
+
+        .card h3 { color: var(--principal); font-size: 1.5rem; margin-top: 0; }
+        .card p { color: #ccc; }
+
+        /* --- GALERÍA --- */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .foto {
+            background: #1a1a1a;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .foto img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: grayscale(40%);
+            transition: 0.5s;
+        }
+
+        .foto:hover { border-color: var(--principal); }
+        .foto:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+        /* --- BOTÓN WHATSAPP --- */
         .btn-ws {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #25d366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
+            background-color: var(--principal);
+            color: black;
+            padding: 18px 30px;
+            border-radius: 100px;
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            font-weight: 900;
+            box-shadow: 0 10px 40px rgba(251, 197, 49, 0.3);
             display: flex;
             align-items: center;
             z-index: 1000;
-            transition: 0.3s;
+            transition: 0.4s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
-        .btn-ws:hover { background-color: #128c7e; transform: scale(1.1); }
+        .btn-ws:hover { 
+            transform: scale(1.05) translateY(-5px);
+            background-color: white;
+            box-shadow: 0 15px 50px rgba(251, 197, 49, 0.5);
+        }
 
-        footer { background: #000; text-align: center; padding: 40px; margin-top: 50px; color: #666; }
+        footer { 
+            background: #050505; 
+            text-align: center; 
+            padding: 60px 20px; 
+            border-top: 1px solid #222;
+        }
+
+        footer p { color: #555; margin: 5px; }
+
+        /* Animación suave para los elementos */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s;
+        }
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
     </style>
 </head>
 <body>
 
+    <div class="bg-animated"></div>
+    
+    <div class="floating-icons">
+        <span class="icon" style="left: 10%; animation-delay: 0s;">🔨</span>
+        <span class="icon" style="left: 30%; animation-delay: 5s;">📏</span>
+        <span class="icon" style="left: 50%; animation-delay: 2s;">🏗️</span>
+        <span class="icon" style="left: 70%; animation-delay: 8s;">🧱</span>
+        <span class="icon" style="left: 90%; animation-delay: 3s;">🛠️</span>
+        <span class="icon" style="left: 20%; animation-delay: 12s;">🔧</span>
+    </div>
+
     <section class="hero">
-        <h1>CONSTRUCCIÓN PROFESIONAL</h1>
-        <p>Albañilería • Electricidad • Plomería • Acabados</p>
+        <h1>CONSTRUCCIÓN<br><span style="color:white">SIN LÍMITES</span></h1>
+        <p>CALIDAD • INNOVACIÓN • COMPROMISO</p>
     </section>
 
-    <div class="seccion" style="text-align: center;">
-        <h2>Nuestros Servicios</h2>
+    <div class="seccion">
+        <h2>Nuestras Especialidades</h2>
         <div class="grid">
             <div class="card">
-                <h3>🧱 Albañilería General</h3>
-                <p>Muros, revoques, carpetas y estructuras de hormigón.</p>
+                <h3>🧱 Albañilería</h3>
+                <p>Estructuras sólidas, muros y acabados de primera calidad para obras nuevas o reformas.</p>
             </div>
             <div class="card">
-                <h3>📐 Cerámicas y Azulejos</h3>
-                <p>Colocación de precisión en baños, cocinas y pisos.</p>
+                <h3>📐 Revestimientos</h3>
+                <p>Colocación experta de cerámicas, porcelanatos y azulejos con terminaciones perfectas.</p>
             </div>
             <div class="card">
                 <h3>⚡ Electricidad</h3>
-                <p>Instalaciones completas y reparaciones de urgencia.</p>
+                <p>Proyectos eléctricos integrales bajo normas de seguridad vigentes.</p>
             </div>
             <div class="card">
                 <h3>💧 Plomería</h3>
-                <p>Arreglos de fugas, instalaciones de agua y cloacas.</p>
+                <p>Soluciones hidráulicas modernas, termofusión y reparaciones eficientes.</p>
             </div>
             <div class="card">
-                <h3>🛁 Baños</h3>
-                <p>Remodelaciones integrales de sanitarios y grifería.</p>
+                <h3>🛁 Baños de Lujo</h3>
+                <p>Transformamos tu baño en un espacio moderno y funcional.</p>
             </div>
             <div class="card">
-                <h3>🎨 Pintura</h3>
-                <p>Protección y estética para tus paredes y techos.</p>
+                <h3>🎨 Pintura & Deco</h3>
+                <p>Aplicación de pinturas especiales y acabados estéticos para interiores y exteriores.</p>
             </div>
         </div>
     </div>
 
     <div class="seccion">
-        <h2 style="display: block;">Muestra de nuestro trabajo</h2>
+        <h2>Proyectos Finalizados</h2>
         <div class="galeria">
-            <div class="foto"><img src="logo.png" alt="Trabajo de baño"></div>
-            <div class="foto"><img src="escalera1.jpeg" alt="Trabajo de baño2"></div>
-            <div class="foto"><img src="escalera2.jpeg"></div>
-            <div class="foto"><img src="escalera3.jpeg"></div>
-             <div class="foto"><img src="fran.jpg"></div>
-              <div class="foto"><img src="ban.png"></div>
-             
+            <div class="foto"><img src="logo.png" alt="Trabajo 1"></div>
+            <div class="foto"><img src="escalera1.jpeg" alt="Trabajo 2"></div>
+            <div class="foto"><img src="escalera2.jpeg" alt="Trabajo 3"></div>
+            <div class="foto"><img src="escalera3.jpeg" alt="Trabajo 4"></div>
+            <div class="foto"><img src="fran.jpg" alt="Trabajo 5"></div>
+            <div class="foto"><img src="ban.png" alt="Trabajo 6"></div>
         </div>
     </div>
 
     <a href="https://wa.me/5491141441507" class="btn-ws">
-        💬 ¡Consultar por WhatsApp!
+        <span style="font-size: 1.5rem; margin-right: 10px;">💬</span> Presupuesto Sin Cargo
     </a>
 
     <footer>
-        <p>Ubicación: Buenos Aires • Contacto: 11 4144-1507</p>
-        <p>© 2026 Calidad en Construcción</p>
+        <p>📍 Buenos Aires, Argentina</p>
+        <p>📞 Contacto directo: 11 4144-1507</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE CONSTRUCCIONES</p>
     </footer>
+
+    <script>
+        // Efecto simple para que aparezcan las cosas al bajar
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.card, .foto, h2').forEach((el) => {
+            el.style.opacity = "0";
+            el.style.transition = "all 0.8s ease-out";
+            observer.observe(el);
+        });
+    </script>
 
 </body>
 </html>
