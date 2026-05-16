@@ -290,29 +290,6 @@
     <a href="https://wa.me/5491141441507" class="btn-ws">
         <span style="font-size: 1.5rem; margin-right: 10px;">💬</span> Presupuesto Sin Cargo
     </a>
-
-    <footer>
-        <p>📍 Buenos Aires, Argentina</p>
-        <p>📞 Contacto directo: 11 4144-1507</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE CONSTRUCCIONES</p>
-    </footer>
-
-    <script>
-        // Efecto simple para que aparezcan las cosas al bajar
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-
-        document.querySelectorAll('.card, .foto, h2').forEach((el) => {
-            el.style.opacity = "0";
-            el.style.transition = "all 0.8s ease-out";
-            observer.observe(el);
-        });
-    </script>
 <a href="https://github.com/lordoscuro70-bit/imagenes-eureka/raw/main/app-release.apk"
    download="Eureka-Construcciones.apk"
    style="
@@ -344,6 +321,29 @@
 
     Descargar la App
 </a>
+    <footer>
+        <p>📍 Buenos Aires, Argentina</p>
+        <p>📞 Contacto directo: 11 4144-1507</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE CONSTRUCCIONES</p>
+    </footer>
+
+    <script>
+        // Efecto simple para que aparezcan las cosas al bajar
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.card, .foto, h2').forEach((el) => {
+            el.style.opacity = "0";
+            el.style.transition = "all 0.8s ease-out";
+            observer.observe(el);
+        });
+    </script>
+
 
 </body>
 </html>
