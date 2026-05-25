@@ -24,6 +24,68 @@
             color: var(--texto);
             line-height: 1.6;
             overflow-x: hidden;
+            overflow-y: hidden; /* Bloqueado al inicio para obligar a ver el video */
+        }
+
+        /* --- PANTALLA DE INTRO DE VIDEO --- */
+        #video-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 99999; /* Por encima de absolutamente todo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
+        }
+
+        #video-intro video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* Se oculta al inicio hasta que den clic al botón */
+        }
+
+        /* Botón de inicio para activar el sonido legalmente */
+        #btn-iniciar {
+            padding: 20px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background-color: var(--principal);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(251, 197, 49, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100000;
+        }
+
+        #btn-iniciar:hover {
+            transform: scale(1.1);
+            background-color: #ffffff;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Clase para desvanecer la intro */
+        .intro-oculta {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* --- CONTENEDOR DE LA PÁGINA WEB --- */
+        #contenido-pagina {
+            opacity: 0; /* Oculto al inicio */
+            transition: opacity 1.2s ease-in;
+        }
+
+        .contenido-visible {
+            opacity: 1 !important;
         }
 
         /* --- FONDO ANIMADO --- */
@@ -129,7 +191,7 @@
             padding: 40px;
             border-radius: 20px;
             border: 1px solid rgba(251, 197, 49, 0.1);
-            backdrop-filter: blur(10px); /* Efecto cristal */
+            backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
@@ -229,76 +291,115 @@
 </head>
 <body>
 
-    <div class="bg-animated"></div>
-    
-    <div class="floating-icons">
-        <span class="icon" style="left: 10%; animation-delay: 0s;">🔨</span>
-        <span class="icon" style="left: 30%; animation-delay: 5s;">📏</span>
-        <span class="icon" style="left: 50%; animation-delay: 2s;">🏗️</span>
-        <span class="icon" style="left: 70%; animation-delay: 8s;">🧱</span>
-        <span class="icon" style="left: 90%; animation-delay: 3s;">🛠️</span>
-        <span class="icon" style="left: 20%; animation-delay: 12s;">🔧</span>
+    <div id="video-intro">
+        <button id="btn-iniciar">🔨 Ver Presentación</button>
+        
+        <video id="mi-trailer" playsinline>
+            <source src="trailer.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
     </div>
 
-    <section class="hero">
-        <h1>CONSTRUCCIÓN<br><span style="color:white">SIN LÍMITES</span></h1>
-        <p>CALIDAD • INNOVACIÓN • COMPROMISO</p>
-    </section>
+    <div id="contenido-pagina">
+        <div class="bg-animated"></div>
+        
+        <div class="floating-icons">
+            <span class="icon" style="left: 10%; animation-delay: 0s;">🔨</span>
+            <span class="icon" style="left: 30%; animation-delay: 5s;">📏</span>
+            <span class="icon" style="left: 50%; animation-delay: 2s;">🏗️</span>
+            <span class="icon" style="left: 70%; animation-delay: 8s;">🧱</span>
+            <span class="icon" style="left: 90%; animation-delay: 3s;">🛠️</span>
+            <span class="icon" style="left: 20%; animation-delay: 12s;">🔧</span>
+        </div>
 
-    <div class="seccion">
-        <h2>Nuestras Especialidades</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🧱 Albañilería</h3>
-                <p>Estructuras sólidas, muros y acabados de primera calidad para obras nuevas o reformas.</p>
-            </div>
-            <div class="card">
-                <h3>📐 Revestimientos</h3>
-                <p>Colocación experta de cerámicas, porcelanatos y azulejos con terminaciones perfectas.</p>
-            </div>
-            <div class="card">
-                <h3>⚡ Electricidad</h3>
-                <p>Proyectos eléctricos integrales bajo normas de seguridad vigentes.</p>
-            </div>
-            <div class="card">
-                <h3>💧 Plomería</h3>
-                <p>Soluciones hidráulicas modernas, termofusión y reparaciones eficientes.</p>
-            </div>
-            <div class="card">
-                <h3>🛁 Baños de Lujo</h3>
-                <p>Transformamos tu baño en un espacio moderno y funcional.</p>
-            </div>
-            <div class="card">
-                <h3>🎨 Pintura & Deco</h3>
-                <p>Aplicación de pinturas especiales y acabados estéticos para interiores y exteriores.</p>
+        <section class="hero">
+            <h1>CONSTRUCCIÓN<br><span style="color:white">SIN LÍMITES</span></h1>
+            <p>CALIDAD • INNOVACIÓN • COMPROMISO</p>
+        </section>
+
+        <div class="seccion">
+            <h2>Nuestras Especialidades</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🧱 Albañilería</h3>
+                    <p>Estructuras sólidas, muros y acabados de primera calidad para obras nuevas o reformas.</p>
+                </div>
+                <div class="card">
+                    <h3>📐 Revestimientos</h3>
+                    <p>Colocación experta de cerámicas, porcelanatos y azulejos con terminaciones perfectas.</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Electricidad</h3>
+                    <p>Proyectos eléctricos integrales bajo normas de seguridad vigentes.</p>
+                </div>
+                <div class="card">
+                    <h3>💧 Plomería</h3>
+                    <p>Soluciones hidráulicas modernas, termofusión y reparaciones eficientes.</p>
+                </div>
+                <div class="card">
+                    <h3>🛁 Baños de Lujo</h3>
+                    <p>Transformamos tu baño en un espacio moderno y funcional.</p>
+                </div>
+                <div class="card">
+                    <h3>🎨 Pintura & Deco</h3>
+                    <p>Aplicación de pinturas especiales y acabados estéticos para interiores y exteriores.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="seccion">
-        <h2>Proyectos Finalizados</h2>
-        <div class="galeria">
-            <div class="foto"><img src="logo.png" alt="Trabajo 1"></div>
-            <div class="foto"><img src="escalera1.jpeg" alt="Trabajo 2"></div>
-            <div class="foto"><img src="escalera2.jpeg" alt="Trabajo 3"></div>
-            <div class="foto"><img src="escalera3.jpeg" alt="Trabajo 4"></div>
-            <div class="foto"><img src="fran.jpg" alt="Trabajo 5"></div>
-            <div class="foto"><img src="ban.png" alt="Trabajo 6"></div>
+        <div class="seccion">
+            <h2>Proyectos Finalizados</h2>
+            <div class="galeria">
+                <div class="foto"><img src="logo.png" alt="Trabajo 1"></div>
+                <div class="foto"><img src="escalera1.jpeg" alt="Trabajo 2"></div>
+                <div class="foto"><img src="escalera2.jpeg" alt="Trabajo 3"></div>
+                <div class="foto"><img src="escalera3.jpeg" alt="Trabajo 4"></div>
+                <div class="foto"><img src="fran.jpg" alt="Trabajo 5"></div>
+                <div class="foto"><img src="ban.png" alt="Trabajo 6"></div>
+            </div>
         </div>
+
+        <a href="https://wa.me/5491141441507" class="btn-ws">
+            <span style="font-size: 1.5rem; margin-right: 10px;">💬</span> Presupuesto Sin Cargo
+        </a>
+
+        <footer>
+            <p>📍 Buenos Aires, Argentina</p>
+            <p>📞 Contacto directo: 11 4144-1507</p>
+	    <p>📞 Contacto directo: 11 3394-6391</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE CONSTRUCCIONES</p>
+        </footer>
     </div>
-
-    <a href="https://wa.me/5491141441507" class="btn-ws">
-        <span style="font-size: 1.5rem; margin-right: 10px;">💬</span> Presupuesto Sin Cargo
-    </a>
-
-    <footer>
-        <p>📍 Buenos Aires, Argentina</p>
-        <p>📞 Contacto directo: 11 4144-1507</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;">© 2026 ELITE CONSTRUCCIONES</p>
-    </footer>
 
     <script>
-        // Efecto simple para que aparezcan las cosas al bajar
+        const video = document.getElementById('mi-trailer');
+        const intro = document.getElementById('video-intro');
+        const btnIniciar = document.getElementById('btn-iniciar');
+        const contenido = document.getElementById('contenido-pagina');
+
+        // Acción al presionar el botón de inicio
+        btnIniciar.addEventListener('click', function() {
+            btnIniciar.style.display = 'none'; // Desaparece el botón
+            video.style.display = 'block';      // Se muestra el elemento de video
+            video.play();                      // Se reproduce el video con SONIDO completo
+        });
+
+        // Acción automática cuando el video llega al final
+        video.addEventListener('ended', function() {
+            intro.classList.add('intro-oculta');       // Desvanece la pantalla negra
+            contenido.classList.add('contenido-visible'); // Muestra tu web original
+            
+            // Habilita nuevamente los scrolls del navegador
+            document.body.style.overflowY = 'auto';
+            document.documentElement.style.overflowY = 'auto';
+            
+            // Remueve el contenedor de video para optimizar la carga
+            setTimeout(() => {
+                intro.style.display = 'none';
+            }, 1000); 
+        });
+
+        // Tu script original de IntersectionObserver para la animación de las tarjetas
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -313,7 +414,6 @@
             observer.observe(el);
         });
     </script>
-
 
 </body>
 </html>
